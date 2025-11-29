@@ -58,17 +58,6 @@ FlowGUI includes AI-powered features to enhance your workflow:
 - **Code Optimization**: Let AI suggest improvements to your GUI code
 - **Natural Language**: Describe what you want in plain English and let AI help build it
 
-## 📦 Building for Production
-
-To create a production build:
-
-```bash
-# Build the React app
-npm run build
-
-# Package the Electron app
-npm run dist
-```
 
 ## 📄 License
 
