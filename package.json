@@ -12,7 +12,11 @@
     "preview": "vite preview",
     "electron:dev": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "npm run build && electron-builder"
+    "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "dist:all": "npm run build && electron-builder -wl"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

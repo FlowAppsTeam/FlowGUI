@@ -1,0 +1,85 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
+    - name: Build release
+      if: matrix.os == 'ubuntu-latest'
+      run: npm run dist:linux
+
+    - name: Build release
+      if: matrix.os == 'macos-latest'
+      run: npm run dist:mac
+
+    - name: Build release
+      if: matrix.os == 'windows-latest'
+      run: npm run dist:win
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: flowgui-${{ matrix.os }}
+        path: |
+          dist-electron/*.AppImage
+          dist-electron/*.dmg
+          dist-electron/*.exe
+          dist-electron/*.zip
+
+  release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download all build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref_name }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Assets
+      uses: AButler/upload-release-assets@v2.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./artifacts/**/*
+        asset_name: ${{ github.workflow }}-${{ github.sha }}
+        asset_content_type: application/octet-stream
