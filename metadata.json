@@ -1,0 +1,5 @@
+{
+  "name": "FlowGUI",
+  "description": "A visual editor for creating Minecraft modding GUIs with one-click Java code generation and AI-powered implementation guidance.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,85 @@
+{
+  "name": "FlowGUI",
+  "version": "1.0.0-beta",
+  "description": "A visual editor for creating Minecraft modding GUIs with code generation.",
+  "main": "electron-main.js",
+  "author": "smegasberla",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron:dev": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "lucide-react": "^0.300.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "electron": "^39.2.4",
+    "electron-builder": "^24.9.1",
+    "electron-icon-builder": "^2.0.1",
+    "png-to-ico": "^3.0.1",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "to-ico": "^1.1.5",
+    "typescript": "^5.3.3",
+    "vite": "^7.2.4"
+  },
+  "build": {
+    "appId": "com.flowgui.architect",
+    "productName": "FlowGUI",
+    "icon": "icon.ico",
+    "artifactName": "${productName}.${ext}",
+    "directories": {
+      "output": "dist-electron",
+      "buildResources": "."
+    },
+    "extraResources": [
+      {
+        "from": "icon.ico",
+        "to": "icon.ico"
+      }
+    ],
+    "files": [
+      "dist/**/*",
+      "electron-main.js",
+      "electron-preload.js",
+      "package.json",
+      "icon.ico"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "artifactName": "${productName} Setup.${ext}",
+      "installerIcon": "icon.ico",
+      "installerHeaderIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico"
+    },
+    "portable": {
+      "artifactName": "${productName}.${ext}"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "icon.png"
+    }
+  }
+}
