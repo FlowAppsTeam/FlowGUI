@@ -18,47 +18,11 @@ FlowGUI is a powerful visual editor for creating and designing Minecraft modding
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Download the Latest Release
 
-- Node.js 16+ and npm/yarn
-- Java Development Kit (JDK) 17+
-- Git
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/FlowAppsTeam/FlowGUI.git
-   cd FlowGUI
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-4. For production build:
-   ```bash
-   npm run build
-   # or
-   yarn build
-   ```
-
-5. To run the Electron app:
-   ```bash
-   npm run electron:dev
-   # or
-   yarn electron:dev
-   ```
+1. Go to the [Releases](https://github.com/FlowAppsTeam/FlowGUI/releases) page
+2. Download the latest version for your operating system
+3. Run the application
 
 ## 🖥️ Project Structure
 
@@ -108,11 +72,11 @@ npm run dist
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Contributions are welcome! Please follow the standard GitHub workflow for submitting pull requests.
 
 ## 📧 Contact
 
